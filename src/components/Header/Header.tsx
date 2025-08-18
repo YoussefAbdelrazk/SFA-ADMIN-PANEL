@@ -13,7 +13,7 @@ export function Header() {
             <Search className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4' />
             <Input
               placeholder='في ماذا تفكر...'
-              className='pl-4 pr-10 bg-gray-50 border-gray-200 focus:bg-white'
+              className='pl-4 pr-10 bg-gray-50 border-gray-200 focus:bg-white arabic-text'
             />
           </div>
         </div>
@@ -32,7 +32,7 @@ export function Header() {
               <AvatarImage src='/placeholder-avatar.jpg' alt='شريف فرنسا' />
               <AvatarFallback className='bg-purple-100 text-purple-600'>ش</AvatarFallback>
             </Avatar>
-            <div className='text-right'>
+            <div className='text-right arabic-text'>
               <p className='font-semibold text-gray-900'>شريف فرنسا</p>
               <p className='text-sm text-gray-500'>المالك</p>
             </div>
