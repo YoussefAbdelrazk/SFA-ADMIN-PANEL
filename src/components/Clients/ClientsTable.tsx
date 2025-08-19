@@ -2,6 +2,7 @@
 
 import { Client, clientsData } from '@/lib/data/ClientsData';
 import { ChevronDown, ChevronLeft, ChevronRight, Eye, Filter, Search } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -11,6 +12,7 @@ import { BlockClientModal } from './BlockClientModal';
 import { UnblockClientModal } from './UnblockClientModal';
 
 export default function ClientsTable() {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [showBlockModal, setShowBlockModal] = useState(false);
@@ -45,6 +47,10 @@ export default function ClientsTable() {
     console.log('Unblocking client:', selectedClient?.name);
     setShowUnblockModal(false);
     setSelectedClient(null);
+  };
+
+  const handleViewClient = (clientId: string) => {
+    router.push(`/clients/${clientId}`);
   };
 
   return (
@@ -158,6 +164,7 @@ export default function ClientsTable() {
                     variant='outline'
                     size='sm'
                     className='text-purple-600 border-purple-600 hover:bg-purple-50 flex items-center gap-2'
+                    onClick={() => handleViewClient(client.id)}
                   >
                     <Eye className='w-4 h-4' />
                     عرض
