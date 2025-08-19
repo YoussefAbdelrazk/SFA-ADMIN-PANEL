@@ -1,8 +1,71 @@
+'use client';
+import { NavigationItem } from '@/lib/types/navigation';
 import { cn } from '@/lib/utils';
+import { ChevronDown, ChevronLeft } from 'lucide-react';
+import { useState } from 'react';
 import { navigationItems } from './SidebarItems';
-import { ChevronLeft } from 'lucide-react';
 
 export function Sidebar() {
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+
+  const toggleExpanded = (itemName: string) => {
+    const newExpanded = new Set(expandedItems);
+    if (newExpanded.has(itemName)) {
+      newExpanded.delete(itemName);
+    } else {
+      newExpanded.add(itemName);
+    }
+    setExpandedItems(newExpanded);
+  };
+
+  const renderNavItem = (item: NavigationItem, level: number = 0) => {
+    const hasChildren = item.children && item.children.length > 0;
+    const isExpanded = expandedItems.has(item.name);
+
+    return (
+      <li key={item.name}>
+        <div className='flex flex-col'>
+          <a
+            href={item.href}
+            className={cn(
+              'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors group arabic-text',
+              level === 0 ? 'px-4' : 'px-8',
+              item.active
+                ? 'bg-purple-700 text-white'
+                : 'text-purple-100 hover:bg-purple-800 hover:text-white',
+            )}
+            onClick={
+              hasChildren
+                ? e => {
+                    e.preventDefault();
+                    toggleExpanded(item.name);
+                  }
+                : undefined
+            }
+          >
+            <item.icon className='w-5 h-5' />
+            <span className='flex-1'>{item.name}</span>
+            {hasChildren && (
+              <span className='text-purple-300 group-hover:text-white transition-colors'>
+                {isExpanded ? (
+                  <ChevronDown className='w-5 h-5' />
+                ) : (
+                  <ChevronLeft className='w-5 h-5' />
+                )}
+              </span>
+            )}
+          </a>
+
+          {hasChildren && isExpanded && item.children && (
+            <ul className='space-y-1 mt-1'>
+              {item.children.map((child: NavigationItem) => renderNavItem(child, level + 1))}
+            </ul>
+          )}
+        </div>
+      </li>
+    );
+  };
+
   return (
     <div className='w-64 bg-purple-900 text-white flex flex-col'>
       {/* Logo */}
@@ -19,28 +82,7 @@ export function Sidebar() {
 
       {/* Navigation */}
       <nav className='flex-1 p-4'>
-        <ul className='space-y-2'>
-          {navigationItems.map(item => (
-            <li key={item.name}>
-              <a
-                href={item.href}
-                className={cn(
-                  'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors group',
-                  item.active
-                    ? 'bg-purple-700 text-white'
-                    : 'text-purple-100 hover:bg-purple-800 hover:text-white',
-                )}
-              >
-                <item.icon className='w-5 h-5' />
-                <span className='flex-1'>{item.name}</span>
-                <span className='text-purple-300 group-hover:text-white transition-colors'>
-                  {' '}
-                  <ChevronLeft className='w-5 h-5' />
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <ul className='space-y-2'>{navigationItems.map(item => renderNavItem(item))}</ul>
       </nav>
     </div>
   );
