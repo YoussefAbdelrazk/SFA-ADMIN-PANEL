@@ -16,10 +16,19 @@ import {
 } from 'lucide-react';
 
 export const navigationItems: NavigationItem[] = [
-  { name: 'الرئسيه', icon: LayoutDashboard, href: '/', active: true },
+  { name: 'الرئسيه', icon: LayoutDashboard, href: '/' },
   { name: 'العملاء', icon: Users, href: '/clients' },
   { name: 'ارسال اشعار', icon: Bell, href: '/notifications' },
-  { name: 'المدربين', icon: UserCheck, href: '/trainers' },
+  {
+    name: 'المدربين',
+    icon: UserCheck,
+    href: '/trainers',
+    children: [
+      { name: 'إضافة مدرب جديد', icon: Plus, href: '/trainers/add' },
+      { name: ' الطلبات الانضمام', icon: Clock, href: '/trainers/pending' },
+      { name: ' لائحة المدربين', icon: List, href: '/trainers' },
+    ],
+  },
   {
     name: 'الفيديوهات',
     icon: Video,

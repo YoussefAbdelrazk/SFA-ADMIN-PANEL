@@ -6,4 +6,5 @@ export interface NavigationItem {
   href: string;
   active?: boolean;
   children?: NavigationItem[];
+  selected?: boolean;
 }

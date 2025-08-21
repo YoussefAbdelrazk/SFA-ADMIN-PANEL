@@ -2,11 +2,42 @@
 import { NavigationItem } from '@/lib/types/navigation';
 import { cn } from '@/lib/utils';
 import { ChevronDown, ChevronLeft } from 'lucide-react';
-import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { navigationItems } from './SidebarItems';
 
 export function Sidebar() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  const pathname = usePathname();
+
+  // Function to check if an item or its children match the current path
+  const isItemSelected = (item: NavigationItem): boolean => {
+    if (item.href === pathname) return true;
+    if (item.children) {
+      return item.children.some(child => isItemSelected(child));
+    }
+    return false;
+  };
+
+  // Function to check if a parent item should be expanded based on current path
+  const shouldExpandItem = (item: NavigationItem): boolean => {
+    if (item.children) {
+      return item.children.some(child => child.href === pathname);
+    }
+    return false;
+  };
+
+  // Initialize expanded items based on current path
+  useEffect(() => {
+    const newExpanded = new Set<string>();
+    navigationItems.forEach(item => {
+      if (shouldExpandItem(item)) {
+        newExpanded.add(item.name);
+      }
+    });
+    setExpandedItems(newExpanded);
+  }, [pathname]);
 
   const toggleExpanded = (itemName: string) => {
     const newExpanded = new Set(expandedItems);
@@ -21,31 +52,24 @@ export function Sidebar() {
   const renderNavItem = (item: NavigationItem, level: number = 0) => {
     const hasChildren = item.children && item.children.length > 0;
     const isExpanded = expandedItems.has(item.name);
+    const isSelected = isItemSelected(item);
 
     return (
       <li key={item.name}>
         <div className='flex flex-col'>
-          <a
-            href={item.href}
-            className={cn(
-              'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors group arabic-text',
-              level === 0 ? 'px-4' : 'px-8',
-              item.active
-                ? 'bg-purple-700 text-white'
-                : 'text-purple-100 hover:bg-purple-800 hover:text-white',
-            )}
-            onClick={
-              hasChildren
-                ? e => {
-                    e.preventDefault();
-                    toggleExpanded(item.name);
-                  }
-                : undefined
-            }
-          >
-            <item.icon className='w-5 h-5' />
-            <span className='flex-1'>{item.name}</span>
-            {hasChildren && (
+          {hasChildren ? (
+            <button
+              className={cn(
+                'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors group arabic-text relative w-full text-left',
+                level === 0 ? 'px-4' : 'px-8',
+                isSelected
+                  ? 'bg-purple-700 text-white border-r-4 border-yellow-400'
+                  : 'text-purple-100 hover:bg-purple-800 hover:text-white',
+              )}
+              onClick={() => toggleExpanded(item.name)}
+            >
+              <item.icon className='w-5 h-5' />
+              <span className='flex-1'>{item.name}</span>
               <span className='text-purple-300 group-hover:text-white transition-colors'>
                 {isExpanded ? (
                   <ChevronDown className='w-5 h-5' />
@@ -53,8 +77,22 @@ export function Sidebar() {
                   <ChevronLeft className='w-5 h-5' />
                 )}
               </span>
-            )}
-          </a>
+            </button>
+          ) : (
+            <Link
+              href={item.href}
+              className={cn(
+                'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors group arabic-text relative',
+                level === 0 ? 'px-4' : 'px-8',
+                isSelected
+                  ? 'bg-purple-700 text-white border-r-4 border-yellow-400'
+                  : 'text-purple-100 hover:bg-purple-800 hover:text-white',
+              )}
+            >
+              <item.icon className='w-5 h-5' />
+              <span className='flex-1'>{item.name}</span>
+            </Link>
+          )}
 
           {hasChildren && isExpanded && item.children && (
             <ul className='space-y-1 mt-1'>
