@@ -39,7 +39,16 @@ export const navigationItems: NavigationItem[] = [
       { name: ' لائحة الفيديوهات', icon: List, href: '/videos/list' },
     ],
   },
-  { name: 'البرامج', icon: FileText, href: '/programs' },
+  {
+    name: 'البرامج',
+    icon: FileText,
+    href: '/programs',
+    children: [
+      { name: 'إضافة برنامج جديد', icon: Plus, href: '/programs/add' },
+      { name: ' لائحة البرامج', icon: List, href: '/programs' },
+      { name: ' تعديل البرنامج', icon: Clock, href: '/programs/udpate' },
+    ],
+  },
   { name: 'وحده التحكم', icon: Settings, href: '/settings' },
   { name: 'الاشتراكات', icon: CreditCard, href: '/subscriptions' },
   { name: 'إدارة FAQ', icon: HelpCircle, href: '/faq' },

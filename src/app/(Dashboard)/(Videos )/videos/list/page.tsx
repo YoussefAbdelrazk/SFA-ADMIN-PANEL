@@ -7,13 +7,13 @@ import Link from 'next/link';
 
 export default function VideosList() {
   return (
-    <div className='arabic-text'>
+    <div className='arabic-text container mx-auto px-4 py-8'>
       {/* Header Section */}
-      <div className='mb-3'>
-        <div className='flex items-center justify-between mb-2'>
+      <div className='mb-6'>
+        <div className='flex items-center justify-between mb-4'>
           <h1 className='text-3xl font-bold text-gray-900'>الفيديوهات</h1>
           <Link href='/videos/add'>
-            <Button className='bg-purple-600 hover:bg-purple-700 flex items-center gap-2 text-white'>
+            <Button className='bg-purple-700 hover:bg-purple-800 flex items-center gap-2 text-white'>
               <Plus className='w-4 h-4' />
               إضافة فيديو جديد
             </Button>

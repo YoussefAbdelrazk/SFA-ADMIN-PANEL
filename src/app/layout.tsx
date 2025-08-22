@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ar' dir='rtl'>
-      <body className={`${cairo.variable} font-cairo antialiased`}>
+      <body className={`${cairo.variable} font-cairo antialiased arabic-text`}>
         <DashboardLayout>{children}</DashboardLayout>
       </body>
     </html>

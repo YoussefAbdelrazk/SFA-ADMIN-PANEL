@@ -5,10 +5,10 @@ import Link from 'next/link';
 
 export default function TrainersPage() {
   return (
-    <div className='arabic-text'>
+    <div className='arabic-text container mx-auto px-4 py-8'>
       {/* Header Section */}
-      <div className='mb-3'>
-        <div className='flex items-center justify-between mb-2'>
+      <div className='mb-6'>
+        <div className='flex items-center justify-between mb-4'>
           <div>
             <h1 className='text-3xl font-bold text-purple-600'>اداره المدربين</h1>
           </div>
