@@ -1,20 +1,33 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Bell, Search } from 'lucide-react';
+import { Bell, Menu, Search, X } from 'lucide-react';
 
-export function Header() {
+interface HeaderProps {
+  onMobileMenuToggle: () => void;
+  isMobileMenuOpen: boolean;
+}
+
+export function Header({ onMobileMenuToggle, isMobileMenuOpen }: HeaderProps) {
   return (
     <header className='bg-white border-b border-gray-200 px-4 lg:px-6 py-4'>
       <div className='flex items-center justify-between gap-4'>
-        {/* Search Bar */}
-        <div className='flex-1 max-w-md hidden md:block'>
-          <div className='relative'>
-            <Search className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4' />
-            <Input
-              placeholder='في ماذا تفكر...'
-              className='pl-4 pr-10 bg-gray-50 border-gray-200 focus:bg-white arabic-text'
-            />
+        {/* Left Side - Mobile Menu Button and Search */}
+        <div className='flex items-center gap-4 flex-1'>
+          {/* Mobile Menu Button */}
+          <Button variant='ghost' size='icon' onClick={onMobileMenuToggle} className='lg:hidden'>
+            {isMobileMenuOpen ? <X className='w-5 h-5' /> : <Menu className='w-5 h-5' />}
+          </Button>
+
+          {/* Search Bar */}
+          <div className='flex-1 max-w-md hidden md:block'>
+            <div className='relative'>
+              <Search className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4' />
+              <Input
+                placeholder='في ماذا تفكر...'
+                className='pl-4 pr-10 bg-gray-50 border-gray-200 focus:bg-white arabic-text'
+              />
+            </div>
           </div>
         </div>
 

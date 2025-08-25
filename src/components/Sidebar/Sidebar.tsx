@@ -1,16 +1,18 @@
 'use client';
-import { Button } from '@/components/ui/button';
 import { NavigationItem } from '@/lib/types/navigation';
 import { cn } from '@/lib/utils';
-import { ChevronDown, ChevronLeft, Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { navigationItems } from './SidebarItems';
 
-export function Sidebar() {
+interface SidebarProps {
+  isMobileMenuOpen: boolean;
+}
+
+export function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   // Function to check if an item or its children match the current path
@@ -39,11 +41,6 @@ export function Sidebar() {
       }
     });
     setExpandedItems(newExpanded);
-  }, [pathname]);
-
-  // Close mobile menu when pathname changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
   }, [pathname]);
 
   const toggleExpanded = (itemName: string) => {
@@ -134,26 +131,6 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <div className='lg:hidden fixed top-4 right-4 z-50'>
-        <Button
-          variant='outline'
-          size='sm'
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className='bg-white shadow-lg'
-        >
-          {isMobileMenuOpen ? <X className='w-5 h-5' /> : <Menu className='w-5 h-5' />}
-        </Button>
-      </div>
-
-      {/* Mobile Overlay */}
-      {isMobileMenuOpen && (
-        <div
-          className='lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40'
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
-
       {/* Mobile Sidebar */}
       <div
         className={cn(
