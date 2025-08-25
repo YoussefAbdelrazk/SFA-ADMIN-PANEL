@@ -1,5 +1,6 @@
 import { NavigationItem } from '@/lib/types/navigation';
 import {
+  BarChart,
   Bell,
   Clock,
   CreditCard,
@@ -50,7 +51,17 @@ export const navigationItems: NavigationItem[] = [
     ],
   },
   { name: 'وحده التحكم', icon: Settings, href: '/settings' },
-  { name: 'الاشتراكات', icon: CreditCard, href: '/subscriptions' },
+  {
+    name: 'الاشتراكات',
+    icon: CreditCard,
+    href: '/subscriptions',
+    children: [
+      { name: 'إضافة اشتراك جديد', icon: Plus, href: '/subscriptions/add' },
+      { name: ' لائحة الاشتراكات', icon: List, href: '/subscriptions' },
+
+      { name: 'احصائيات الاشتراكات', icon: BarChart, href: '/subscriptions/statistics' },
+    ],
+  },
   { name: 'إدارة FAQ', icon: HelpCircle, href: '/faq' },
   { name: 'إدارة من نحن', icon: Info, href: '/about' },
 ];
