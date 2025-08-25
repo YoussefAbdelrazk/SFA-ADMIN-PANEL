@@ -29,23 +29,23 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
   };
 
   return (
-    <div className='container mx-auto px-4 py-8'>
+    <div className='container mx-auto px-4 py-4 lg:py-8'>
       {/* Header */}
-      <div className='flex items-center justify-between mb-8'>
-        <div className='flex items-center gap-4'>
-          <Button variant='outline' onClick={handleBack} className='flex items-center gap-2'>
+      <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6 lg:mb-8'>
+        <div className='flex flex-col sm:flex-row sm:items-center gap-4'>
+          <Button variant='outline' onClick={handleBack} className='flex items-center gap-2 w-fit'>
             <ArrowLeft className='w-4 h-4' />
             رجوع
           </Button>
           <div>
-            <h1 className='text-3xl font-bold text-gray-900'>{client.name}</h1>
-            <p className='text-gray-600'>تفاصيل العميل</p>
+            <h1 className='text-2xl lg:text-3xl font-bold text-gray-900'>{client.name}</h1>
+            <p className='text-gray-600 text-sm lg:text-base'>تفاصيل العميل</p>
           </div>
         </div>
-        <div className='flex gap-3'>
+        <div className='flex flex-col sm:flex-row gap-3'>
           <Button
             onClick={handleEdit}
-            className='bg-blue-600 hover:bg-blue-700 flex items-center gap-2'
+            className='bg-blue-600 hover:bg-blue-700 flex items-center gap-2 w-full sm:w-auto'
           >
             <Edit className='w-4 h-4' />
             تعديل
@@ -53,7 +53,7 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
           <Button
             variant='destructive'
             onClick={handleDelete}
-            className='bg-red-600 hover:bg-red-700 flex items-center gap-2'
+            className='bg-red-600 hover:bg-red-700 flex items-center gap-2 w-full sm:w-auto'
           >
             <Trash2 className='w-4 h-4' />
             حذف
@@ -72,20 +72,20 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
             </CardTitle>
           </CardHeader>
           <CardContent className='space-y-4'>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>الاسم الكامل:</span>
-              <span className='font-medium'>{client.name}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>الاسم الكامل:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.name}</span>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>الاسم الأول:</span>
-              <span className='font-medium'>{client.firstName}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>الاسم الأول:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.firstName}</span>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>اسم العائلة:</span>
-              <span className='font-medium'>{client.lastName}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>اسم العائلة:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.lastName}</span>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>الجنس:</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>الجنس:</span>
               <Badge
                 className={
                   client.gender === 'ذكر'
@@ -96,21 +96,21 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
                 {client.gender}
               </Badge>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>تاريخ الميلاد:</span>
-              <span className='font-medium'>{client.birthDate}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>تاريخ الميلاد:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.birthDate}</span>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>رقم الهاتف:</span>
-              <span className='font-medium'>{client.mobile}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>رقم الهاتف:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.mobile}</span>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>البريد الإلكتروني:</span>
-              <span className='font-medium'>{client.email}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>البريد الإلكتروني:</span>
+              <span className='font-medium text-sm lg:text-base break-all'>{client.email}</span>
             </div>
-            <div className='flex justify-between items-center py-2'>
-              <span className='text-gray-600'>البلد:</span>
-              <span className='font-medium'>{client.country}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>البلد:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.country}</span>
             </div>
           </CardContent>
         </Card>
@@ -124,8 +124,8 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
             </CardTitle>
           </CardHeader>
           <CardContent className='space-y-4'>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>حالة الاشتراك:</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>حالة الاشتراك:</span>
               <Badge
                 className={
                   client.subscriptionStatus === 'ساري'
@@ -136,8 +136,8 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
                 {client.subscriptionStatus}
               </Badge>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>حالة الحساب:</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>حالة الحساب:</span>
               <Badge
                 className={
                   client.accountStatus === 'مفعل'
@@ -148,8 +148,8 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
                 {client.accountStatus}
               </Badge>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>محظور:</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>محظور:</span>
               <Badge
                 className={
                   client.isBlocked
@@ -160,17 +160,17 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
                 {client.isBlocked ? 'نعم' : 'لا'}
               </Badge>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>تاريخ التسجيل:</span>
-              <span className='font-medium'>{client.registrationDate}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>تاريخ التسجيل:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.registrationDate}</span>
             </div>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>تاريخ بداية الاشتراك:</span>
-              <span className='font-medium'>{client.subscriptionDate}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>تاريخ بداية الاشتراك:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.subscriptionDate}</span>
             </div>
-            <div className='flex justify-between items-center py-2'>
-              <span className='text-gray-600'>تاريخ انتهاء الاشتراك:</span>
-              <span className='font-medium'>{client.subscriptionEndDate}</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>تاريخ انتهاء الاشتراك:</span>
+              <span className='font-medium text-sm lg:text-base'>{client.subscriptionEndDate}</span>
             </div>
           </CardContent>
         </Card>
@@ -187,8 +187,8 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
             </CardTitle>
           </CardHeader>
           <CardContent className='space-y-4'>
-            <div className='flex justify-between items-center py-2 border-b border-gray-100'>
-              <span className='text-gray-600'>عدد الفيديوهات المشاهدة:</span>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-100 gap-2'>
+              <span className='text-gray-600 text-sm lg:text-base'>عدد الفيديوهات المشاهدة:</span>
               <span className='font-bold text-lg text-purple-600'>
                 {client.videosWatched} فيديو
               </span>
@@ -216,7 +216,7 @@ export default function ClientDetailsPage({ client }: ClientDetailsPageProps) {
                     className='flex items-center gap-2 py-2 border-b border-gray-100 last:border-b-0'
                   >
                     <div className='w-2 h-2 rounded-full bg-purple-500'></div>
-                    <span className='font-medium'>{program}</span>
+                    <span className='font-medium text-sm lg:text-base'>{program}</span>
                   </div>
                 ))}
               </div>

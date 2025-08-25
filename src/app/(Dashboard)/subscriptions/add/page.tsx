@@ -56,16 +56,16 @@ export default function AddSubscriptionPage() {
   };
 
   return (
-    <div className='container mx-auto px-4 py-8'>
+    <div className='container mx-auto px-4 py-4 lg:py-8'>
       {/* Header */}
-      <div className='flex items-center gap-4 mb-8'>
-        <Button variant='outline' onClick={handleBack} className='flex items-center gap-2'>
+      <div className='flex flex-col sm:flex-row sm:items-center gap-4 mb-6 lg:mb-8'>
+        <Button variant='outline' onClick={handleBack} className='flex items-center gap-2 w-fit'>
           <ArrowLeft className='w-4 h-4' />
           رجوع
         </Button>
         <div>
-          <h1 className='text-3xl font-bold text-gray-900'>إضافة اشتراك جديد</h1>
-          <p className='text-gray-600'>إنشاء اشتراك جديد في النظام</p>
+          <h1 className='text-2xl lg:text-3xl font-bold text-gray-900'>إضافة اشتراك جديد</h1>
+          <p className='text-gray-600 text-sm lg:text-base'>إنشاء اشتراك جديد في النظام</p>
         </div>
       </div>
 
@@ -230,7 +230,7 @@ export default function AddSubscriptionPage() {
           <div className='flex justify-end'>
             <Button
               type='submit'
-              className='bg-purple-600 hover:bg-purple-700 flex items-center gap-2'
+              className='bg-purple-600 hover:bg-purple-700 flex items-center gap-2 w-full sm:w-auto'
               disabled={form.formState.isSubmitting}
             >
               <Save className='w-4 h-4' />

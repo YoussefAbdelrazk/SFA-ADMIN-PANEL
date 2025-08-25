@@ -1,7 +1,8 @@
 'use client';
+import { Button } from '@/components/ui/button';
 import { NavigationItem } from '@/lib/types/navigation';
 import { cn } from '@/lib/utils';
-import { ChevronDown, ChevronLeft } from 'lucide-react';
+import { ChevronDown, ChevronLeft, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -9,6 +10,7 @@ import { navigationItems } from './SidebarItems';
 
 export function Sidebar() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   // Function to check if an item or its children match the current path
@@ -37,6 +39,11 @@ export function Sidebar() {
       }
     });
     setExpandedItems(newExpanded);
+  }, [pathname]);
+
+  // Close mobile menu when pathname changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
   }, [pathname]);
 
   const toggleExpanded = (itemName: string) => {
@@ -104,8 +111,8 @@ export function Sidebar() {
     );
   };
 
-  return (
-    <div className='w-64 bg-purple-900 text-white flex flex-col'>
+  const SidebarContent = () => (
+    <div className='w-64 bg-purple-900 text-white flex flex-col h-full'>
       {/* Logo */}
       <div className='p-6 border-b border-purple-800'>
         <div className='flex items-center flex-row-reverse justify-center gap-3'>
@@ -123,5 +130,44 @@ export function Sidebar() {
         <ul className='space-y-2'>{navigationItems.map(item => renderNavItem(item))}</ul>
       </nav>
     </div>
+  );
+
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <div className='lg:hidden fixed top-4 right-4 z-50'>
+        <Button
+          variant='outline'
+          size='sm'
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className='bg-white shadow-lg'
+        >
+          {isMobileMenuOpen ? <X className='w-5 h-5' /> : <Menu className='w-5 h-5' />}
+        </Button>
+      </div>
+
+      {/* Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className='lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40'
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Sidebar */}
+      <div
+        className={cn(
+          'lg:hidden fixed inset-y-0 right-0 z-50 transform transition-transform duration-300 ease-in-out',
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full',
+        )}
+      >
+        <SidebarContent />
+      </div>
+
+      {/* Desktop Sidebar */}
+      <div className='hidden lg:block'>
+        <SidebarContent />
+      </div>
+    </>
   );
 }
