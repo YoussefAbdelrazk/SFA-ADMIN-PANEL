@@ -5,9 +5,7 @@ export const userFormSchema = z.object({
   email: z.string().email('البريد الإلكتروني غير صحيح'),
   mobile: z.string().min(10, 'رقم الموبايل يجب أن يكون 10 أرقام على الأقل'),
   password: z.string().min(6, 'كلمة المرور يجب أن تكون 6 أحرف على الأقل'),
-  permissions: z.enum(['مستخدم', 'ادمن'], {
-    required_error: 'يرجى اختيار الصلاحيات',
-  }),
+  permissions: z.enum(['مستخدم', 'ادمن']),
 });
 
 export type UserFormData = z.infer<typeof userFormSchema>;

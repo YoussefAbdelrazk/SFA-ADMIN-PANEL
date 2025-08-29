@@ -2,7 +2,7 @@
 
 import { userFormSchema, type UserFormData } from '@/lib/schemas/userSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Check, ChevronDown } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -155,7 +155,6 @@ export function AddUserForm() {
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <SelectTrigger className='text-right'>
                           <SelectValue placeholder='الصلاحيات' />
-                          {/* <ChevronDown className='w-4 h-4 mr-2' /> */}
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value='مستخدم'>
