@@ -11,6 +11,7 @@ import {
   List,
   Plus,
   Settings,
+  User,
   UserCheck,
   Users,
   Video,
@@ -50,7 +51,12 @@ export const navigationItems: NavigationItem[] = [
       { name: ' تعديل البرنامج', icon: Clock, href: '/programs/udpate' },
     ],
   },
-  { name: 'وحده التحكم', icon: Settings, href: '/settings' },
+  {
+    name: 'وحده التحكم',
+    icon: Settings,
+    href: '/settings',
+    children: [{ name: 'المستخدمين', icon: User, href: '/users' }],
+  },
   {
     name: 'الاشتراكات',
     icon: CreditCard,
