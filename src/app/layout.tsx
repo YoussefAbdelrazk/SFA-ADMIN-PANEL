@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/DashboardLayout/DashboardLayout';
 import type { Metadata } from 'next';
 import { Cairo } from 'next/font/google';
 import './globals.css';
@@ -20,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ar' dir='rtl'>
+    <html lang='ar' dir='ltr'>
       <body className={`${cairo.variable} font-cairo antialiased arabic-text`}>
-        <DashboardLayout>{children}</DashboardLayout>
+        <>{children}</>
       </body>
     </html>
   );
