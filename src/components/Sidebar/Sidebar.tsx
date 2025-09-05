@@ -111,7 +111,7 @@ export function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   const SidebarContent = () => (
     <div className='w-64 bg-purple-900 text-white flex flex-col h-full'>
       {/* Logo */}
-      <div className='p-6 border-b border-purple-800'>
+      <div className='p-6 border-b border-purple-800 flex-shrink-0'>
         <div className='flex items-center flex-row-reverse justify-center gap-3'>
           <div className='w-10 h-10 bg-white rounded-lg flex items-center justify-center'>
             <span className='text-purple-900 font-bold text-xl'>S</span>
@@ -123,7 +123,7 @@ export function Sidebar({ isMobileMenuOpen }: SidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className='flex-1 p-4'>
+      <nav className='flex-1 p-4 overflow-y-auto'>
         <ul className='space-y-2'>{navigationItems.map(item => renderNavItem(item))}</ul>
       </nav>
     </div>

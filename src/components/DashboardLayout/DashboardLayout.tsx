@@ -23,8 +23,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   return (
-    <div className='min-h-screen bg-background arabic-text' dir='rtl'>
-      <div className='flex h-screen'>
+    <div className='h-screen bg-background arabic-text' dir='rtl'>
+      <div className='flex h-full'>
         <Sidebar isMobileMenuOpen={isMobileMenuOpen} />
         <div className='flex-1 flex flex-col overflow-hidden'>
           <Header onMobileMenuToggle={toggleMobileMenu} isMobileMenuOpen={isMobileMenuOpen} />
