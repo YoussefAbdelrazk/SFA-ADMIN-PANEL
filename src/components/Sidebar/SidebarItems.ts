@@ -9,6 +9,7 @@ import {
   Info,
   LayoutDashboard,
   List,
+  Phone,
   Plus,
   Settings,
   User,
@@ -70,4 +71,5 @@ export const navigationItems: NavigationItem[] = [
   },
   { name: 'إدارة FAQ', icon: HelpCircle, href: '/faq' },
   { name: 'إدارة من نحن', icon: Info, href: '/about' },
+  { name: 'اتصل بنا', icon: Phone, href: '/contact' },
 ];
